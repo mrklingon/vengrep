@@ -1,0 +1,45 @@
+#!/usr/bin/perl
+
+    use Text::CSV_XS;
+use Text::ParseWords;
+use IO::Handle;
+use Getopt::Std;
+
+getopts('hHv',\%opt);
+
+if ((defined $opt{h} ) or(defined $opt{H}) or (!defined $ARGV[0])){
+    printf "vengrep - grep for vendor mac information\n";
+    printf "        -h -H : this listing\n";
+    printf "        -v : verbose\n";
+}
+
+if ((defined $opt{v}) or (defined $opt{V})){
+    $VERBOSE=1;
+}else{
+    $VERBOSE=0;
+}
+
+
+foreach $mac (@ARGV){
+
+    my $csv = Text::CSV_XS->new({binary => 1, eol => "\r\n"});
+
+
+    open my $io, "cat /home/xxx/yyyy/zzz/newouidbm|";   # update to point to local directory
+
+    $mac =~ s/\://g;
+    $mac =~ s/\-//g;
+    $mac = substr($mac,0,6);
+
+    while ($row = $csv->getline($io)){
+    ($DB,$MACFRAG,$Company,$CMPADDR) = @$row;
+    if ($MACFRAG =~ /$mac/i){
+        if ($VERBOSE==1){
+        printf "$MACFRAG : $Company : $CMPADDR\n";
+        }else{
+        printf "$MACFRAG : $Company\n";
+        }
+    }
+    }
+
+}
