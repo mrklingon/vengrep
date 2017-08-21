@@ -7,6 +7,7 @@ FILES
 getdbm - simple shell script uses wget to collect current ouidbm file 
 
 vengrep - perl script to search newouidbm file for vendor information
+          requires Text::CSV_XS
 
 NOTE both scripts need to be customized:
        1) set the path to the "home" directory for newouidbm file
