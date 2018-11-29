@@ -1,10 +1,11 @@
 #
 # retrieve ieee ouidbm
 #
-# uses wget
+# uses wget testing.
 #
 cd /home/xxx/yyy/zzzz # change to home directory for DBM file
 
 /usr/local/bin/wget https://standards.ieee.org/develop/regauth/oui/oui.csv # set path to correct path for wget
 
 mv oui.csv newouidbm
+echo done
