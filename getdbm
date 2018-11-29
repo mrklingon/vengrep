@@ -1,7 +1,7 @@
 #
 # retrieve ieee ouidbm
 #
-# uses wget testing.
+# uses wget 
 #
 cd /home/xxx/yyy/zzzz # change to home directory for DBM file
 
